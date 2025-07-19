@@ -1,0 +1,154 @@
+# app.R - Main application file
+# Raising The Village Data Science Dashboard
+
+# Load required libraries
+library(shiny)
+library(shinydashboard)
+library(shinydashboardPlus)
+library(shinyWidgets)
+library(tidyverse)
+library(plotly)
+library(leaflet)
+library(DT)
+library(lubridate)
+
+# Function to safely source files
+safe_source <- function(file) {
+  if (file.exists(file)) {
+    source(file)
+  } else {
+    warning(paste("File not found:", file))
+  }
+}
+
+# Source all modules and functions
+safe_source("R/app_config.R")
+safe_source("R/app_server.R")
+safe_source("R/app_ui.R")
+safe_source("R/fct_helpers.R")
+safe_source("R/utils_helpers.R")
+safe_source("R/mod_overview.R")
+safe_source("R/mod_vulnerability_scoring.R")
+safe_source("R/mod_climate_risk.R")
+safe_source("R/mod_crop_diagnostics.R")
+safe_source("R/mod_impact_metrics.R")
+safe_source("R/mod_field_activities.R")
+
+# Create placeholder functions if files are missing
+if (!exists("app_ui")) {
+  warning("app_ui not found, using placeholder")
+  app_ui <- function(request) {
+    dashboardPage(
+      dashboardHeader(title = "RTV Dashboard"),
+      dashboardSidebar(
+        sidebarMenu(
+          menuItem("Overview", tabName = "overview", icon = icon("dashboard"))
+        )
+      ),
+      dashboardBody(
+        tabItems(
+          tabItem(tabName = "overview",
+                  h2("RTV Data Science Dashboard"),
+                  p("Please ensure all module files are properly configured.")
+          )
+        )
+      )
+    )
+  }
+}
+
+if (!exists("app_server")) {
+  warning("app_server not found, using placeholder")
+  app_server <- function(input, output, session) {
+    # Placeholder server
+  }
+}
+
+# Function to create missing module functions
+create_placeholder_module <- function(module_name) {
+  # Create UI function
+  ui_func_name <- paste0("mod_", module_name, "_ui")
+  if (!exists(ui_func_name)) {
+    assign(ui_func_name, function(id) {
+      ns <- NS(id)
+      tagList(
+        h2(paste(tools::toTitleCase(gsub("_", " ", module_name)), "Module")),
+        p("This module is under development."),
+        box(
+          width = 12,
+          title = "Coming Soon",
+          status = "info",
+          solidHeader = TRUE,
+          "Module implementation pending..."
+        )
+      )
+    }, envir = .GlobalEnv)
+  }
+  
+  # Create server function
+  server_func_name <- paste0("mod_", module_name, "_server")
+  if (!exists(server_func_name)) {
+    assign(server_func_name, function(id, datasets) {
+      moduleServer(id, function(input, output, session) {
+        # Placeholder server logic
+      })
+    }, envir = .GlobalEnv)
+  }
+}
+
+# Create placeholders for missing modules
+create_placeholder_module("crop_diagnostics")
+create_placeholder_module("impact_metrics")
+create_placeholder_module("field_activities")
+
+# Helper functions if not loaded
+if (!exists("add_resource_path")) {
+  add_resource_path <- function(prefix, directoryPath) {
+    addResourcePath(prefix, directoryPath)
+  }
+}
+
+if (!exists("golem_add_external_resources")) {
+  golem_add_external_resources <- function() {
+    addResourcePath('www', 'www')
+    tags$head(
+      tags$link(rel = "stylesheet", type = "text/css", href = "www/custom.css"),
+      tags$script(src = "www/custom.js")
+    )
+  }
+}
+
+if (!exists("with_golem_options")) {
+  with_golem_options <- function(app, golem_opts = list()) {
+    app
+  }
+}
+
+# Run the application
+run_app <- function(
+    onStart = NULL,
+    options = list(), 
+    enableBookmarking = NULL,
+    uiPattern = "/",
+    ...
+) {
+  app <- shinyApp(
+    ui = app_ui,
+    server = app_server,
+    onStart = onStart,
+    options = options,
+    enableBookmarking = enableBookmarking,
+    uiPattern = uiPattern
+  )
+  
+  with_golem_options(
+    app = app,
+    golem_opts = list(...)
+  )
+}
+
+# Return the app for shinyapps.io
+run_app()
+
+# Run the app
+run_app()
