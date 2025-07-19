@@ -1,0 +1,271 @@
+
+/* www/custom.css - Custom styling for RTV Dashboard */
+
+/* Import custom font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Global styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f5f7fa;
+  color: #2c3e50;
+}
+
+/* Override default AdminLTE skin-green */
+.skin-green .main-header .navbar {
+  background: linear-gradient(135deg, #2E7D32 0%, #43A047 100%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.skin-green .main-header .logo {
+  background: #1B5E20;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.skin-green .main-header .logo:hover {
+  background: #2E7D32;
+}
+
+/* Sidebar styling */
+.skin-green .main-sidebar {
+  background: #1a1a1a;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+}
+
+.skin-green .sidebar-menu > li > a {
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.skin-green .sidebar-menu > li:hover > a,
+.skin-green .sidebar-menu > li.active > a {
+  border-left-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+/* Value boxes animation */
+.small-box {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  background: white !important;
+  border: 1px solid #e0e0e0;
+}
+
+.small-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+}
+
+.small-box h3 {
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+.small-box .icon {
+  opacity: 0.3;
+  font-size: 70px;
+  transition: all 0.3s ease;
+}
+
+.small-box:hover .icon {
+  font-size: 75px;
+  opacity: 0.4;
+}
+
+/* Box styling */
+.box {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.box:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.box-header {
+  border-bottom: 2px solid #f4f4f4;
+  padding: 12px 20px;
+}
+
+.box-header .box-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.box-body {
+  padding: 20px;
+}
+
+/* Button styling */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 8px 16px;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* DataTable styling */
+.dataTables_wrapper {
+  font-family: 'Inter', sans-serif;
+}
+
+.dataTable thead {
+  background: #f8f9fa;
+}
+
+.dataTable thead th {
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.dataTable tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+/* Plotly plots styling */
+.js-plotly-plot .plotly {
+  border-radius: 8px;
+}
+
+/* Leaflet map styling */
+.leaflet-container {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Search input styling */
+.search-input {
+  border-radius: 20px;
+  border: 2px solid #e0e0e0;
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Loading animation */
+.progress {
+  height: 4px;
+  border-radius: 2px;
+  background: #e0e0e0;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+  animation: progress-animation 2s ease-in-out infinite;
+}
+
+@keyframes progress-animation {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Notification styling */
+.shiny-notification {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: 'Inter', sans-serif;
+}
+
+.shiny-notification-success {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+/* Tab content animation */
+.tab-pane {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .small-box h3 {
+    font-size: 1.8rem;
+  }
+  
+  .box-header .box-title {
+    font-size: 1rem;
+  }
+  
+  .content-wrapper, .right-side {
+    margin-left: 0 !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid #333;
+}
+
+/* Custom dropdown menu */
+.dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border: none;
+}
+
+.dropdown-menu > li > a {
+  transition: all 0.3s ease;
+  padding: 8px 20px;
+}
+
+.dropdown-menu > li > a:hover {
+  background: #f8f9fa;
+  color: #4CAF50;
+}
+
+/* Performance optimization: GPU acceleration for animations */
+.box, .small-box, .btn, .leaflet-container {
+  will-change: transform;
+  transform: translateZ(0);
+}

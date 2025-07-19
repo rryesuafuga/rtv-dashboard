@@ -1,0 +1,10 @@
+default:
+  golem_name: rtvdashboard
+  golem_version: 0.0.0.9000
+  app_prod: no
+  app_title: RTV Data Science Dashboard
+production:
+  app_prod: yes
+dev:
+  golem_wd: !expr here::here()
+
